@@ -12,6 +12,7 @@ sudo docker rm $C2
 sudo docker stop $C3
 sudo docker rm $C3
 
-sudo docker run --name $C1 -d -p 4444:4444 -p 7900:7900 -v /dev/shm:/dev/shm selenium/standalone-chrome:4.0.0-beta-4-prerelease-20210517
-sudo docker run --name $C2 -d -p 4445:4444 -p 7901:7900 -v /dev/shm:/dev/shm selenium/standalone-chrome:4.0.0-beta-4-prerelease-20210517
-sudo docker run --name $C3 -d -p 4446:4444 -p 7902:7900 -v /dev/shm:/dev/shm selenium/standalone-chrome:4.0.0-beta-4-prerelease-20210517
+sudo docker run -d -p 4444:4444 -P --name selenium-hub selenium/hub
+docker run -d --link selenium-hub:hub -P --name $C1 -p 7900:7900 selenium/node-chrome
+docker run -d --link selenium-hub:hub -P --name $C2 -p 7901:7900 selenium/node-chrome
+docker run -d --link selenium-hub:hub -P --name $C3 -p 7902:7900 selenium/node-chrome

@@ -62,7 +62,7 @@ if __name__ == '__main__':
             copy_to(os.path.join(os.getcwd(), filename), "{}:/tmp/{}".format(config['name'], filename))
             os.remove(os.path.join(os.getcwd(), filename + ".tar"))
 
-        driver = webdriver.Remote("http://127.0.0.1:{}/wd/hub".format(config['port']), DesiredCapabilities.CHROME)
+        driver = webdriver.Remote("http://127.0.0.1:4444/wd/hub".format(config['port']), DesiredCapabilities.CHROME)
         driver.get("file:///tmp/worker.html")
 
         print("File opened")
